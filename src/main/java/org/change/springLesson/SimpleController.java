@@ -12,12 +12,12 @@ import java.util.ArrayList;
 public class SimpleController {
     private ArrayList<Product> list = DataBase.getInstance().getList();
 
-    @GetMapping("/shop/product/id")
-    public String getProduct(@RequestParam(required = false) String id) {
+    @GetMapping("/shop/product/{id}")
+    public String getProduct(@PathVariable String id) {
         return "Product : " + list.get(Integer.parseInt(id)).toString();
     }
 
-    @GetMapping("/shop/product/name")
+    /*@GetMapping("/shop/product/name")
     public String getIdProduct(@RequestParam (required = false) String name) {
         int idProd = -1;
         boolean verefi=false;
@@ -34,7 +34,7 @@ public class SimpleController {
         else {
             return "Not found";
         }
-    }
+    }*/
 
     @PostMapping("/shop/product/newproduct")
     public String addProduct(@RequestParam String productname,@RequestParam int cost) {
