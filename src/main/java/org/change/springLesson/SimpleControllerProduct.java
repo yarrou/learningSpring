@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-public class SimpleController {
+@RequestMapping("/shop")
+public class SimpleControllerProduct {
     private ArrayList<Product> list = DataBase.getInstance().getList();
 
-    @GetMapping("/shop/product/{id}")
+    @GetMapping("/product/{id}")
     public ResponseEntity getProduct(@PathVariable String id) {
         if (Integer.parseInt(id) < 0 || Integer.parseInt(id) > (list.size() - 1)) {
             return new ResponseEntity<>("{\"status\": \"Not Found\"}", HttpStatus.NOT_FOUND);
@@ -21,9 +22,9 @@ public class SimpleController {
     }
 
 
-    @PostMapping("/shop/product/newproduct")
-    public ResponseEntity addProduct(@RequestParam String productname, @RequestParam int cost) {
-        list.add(new Product(productname, cost));
-        return new ResponseEntity("product: " + productname + " added", HttpStatus.OK);
+    @PostMapping("/product/newproduct")
+    public ResponseEntity addProduct(@RequestBody Product product) {
+        list.add(product);
+        return new ResponseEntity("product: " + product.getName() + " added", HttpStatus.OK);
     }
 }
