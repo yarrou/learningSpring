@@ -5,17 +5,14 @@ public class Product {
     private int price;
 
 
-    public Product( String name, int price) {
+    public Product(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Product{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+        return "\"name\": \"" + name + "\", \"price\":" + price;
     }
 
     public String getName() {
@@ -33,8 +30,6 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
-
-
 
 
 }
