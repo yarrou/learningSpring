@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/shop")
 public class SimpleControllerProduct {
     private ArrayList<Product> list = DataBase.getInstance().getList();
+    //@RequestMapping("/shop") - does not work with this annotation ¯\_(ツ)_/¯
 
     @GetMapping("/product/{id}")
     public ResponseEntity getProduct(@PathVariable String id) {
@@ -21,10 +21,23 @@ public class SimpleControllerProduct {
         }
     }
 
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity delProduct(@PathVariable int id){
+        String productName = list.get(id).getName();
+        list.remove(id);
+        return new ResponseEntity("product "+ productName + "deleted",HttpStatus.OK);
+    }
 
-    @PostMapping("/product/newproduct")
+    @PostMapping("/products")
     public ResponseEntity addProduct(@RequestBody Product product) {
         list.add(product);
         return new ResponseEntity("product: " + product.getName() + " added", HttpStatus.OK);
     }
+
+    @PutMapping("/products/{id}")
+    public ResponseEntity changeProduct(@PathVariable int id,@RequestBody Product product){
+        list.set(id,product);
+        return new ResponseEntity("product "+ product.getName() + " chanded",HttpStatus.OK);
+    }
+
 }
