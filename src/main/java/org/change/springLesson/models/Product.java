@@ -1,20 +1,30 @@
 package org.change.springLesson.models;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "PRODUCTS")
 public class Product {
+    private int id;
     private String name;
     private int price;
+    private String note;
 
-
-    public Product(String name, int price) {
-        this.name = name;
-        this.price = price;
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "\"name\": \"" + name + "\", \"price\":" + price;
-    }
-
+    @Basic
+    @Column(name =  "NAME")
     public String getName() {
         return name;
     }
@@ -23,6 +33,8 @@ public class Product {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "PRICE")
     public int getPrice() {
         return price;
     }
@@ -31,6 +43,25 @@ public class Product {
         this.price = price;
     }
 
-    public Product() {
+    @Basic
+    @Column(name = "NOTE")
+    public String getNote(){
+        return note;
+    }
+    public void setNote(String note){
+        this.note = note;
+    }
+
+
+    public Product(int id,String name, int price,String note) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.note = note;
+    }
+
+
+
+    Product() {
     }
 }

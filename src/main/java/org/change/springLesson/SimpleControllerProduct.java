@@ -1,6 +1,10 @@
 package org.change.springLesson;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.change.springLesson.models.Product;
+import org.change.springLesson.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,34 +14,36 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/shop")
 public class SimpleControllerProduct {
-    private ArrayList<Product> list = DataBase.getInstance().getList();
+    @Autowired
+    private ProductRepository repository;
 
 
     @GetMapping("/product/{id}")
-    public ResponseEntity getProduct(@PathVariable String id) {
-        if (Integer.parseInt(id) < 0 || Integer.parseInt(id) > (list.size() - 1)) {
+    public ResponseEntity getProduct(@PathVariable String id) throws JsonProcessingException {
+        Product product = repository.findById(Integer.parseInt(id));
+        if (product == null) {
             return new ResponseEntity<>("{\"status\": \"Not Found\"}", HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity("{\"id\": " + id + ',' + list.get(Integer.parseInt(id)).toString() + '}', HttpStatus.OK);
+            return new ResponseEntity((new ObjectMapper()).writeValueAsString(product), HttpStatus.OK);
         }
     }
 
     @DeleteMapping("/product/{id}")
     public ResponseEntity delProduct(@PathVariable int id) {
-        String productName = list.get(id).getName();
-        list.remove(id);
-        return new ResponseEntity("product " + productName + " deleted", HttpStatus.OK);
+        Product product = repository.findById(id);
+        repository.deleteById(id);
+        return new ResponseEntity("product " + product.getName() + " deleted", HttpStatus.OK);
     }
 
     @PostMapping("/products")
     public ResponseEntity addProduct(@RequestBody Product product) {
-        list.add(product);
+        repository.save(product);
         return new ResponseEntity("product: " + product.getName() + " added", HttpStatus.OK);
     }
 
     @PutMapping("/products/{id}")
     public ResponseEntity changeProduct(@PathVariable int id, @RequestBody Product product) {
-        list.set(id, product);
+        repository.saveById(id, product);
         return new ResponseEntity("product " + product.getName() + " chanded", HttpStatus.OK);
     }
 
