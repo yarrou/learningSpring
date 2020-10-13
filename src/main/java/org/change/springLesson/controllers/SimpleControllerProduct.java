@@ -1,4 +1,4 @@
-package org.change.springLesson;
+package org.change.springLesson.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,7 +43,8 @@ public class SimpleControllerProduct {
 
     @PutMapping("/products/{id}")
     public ResponseEntity changeProduct(@PathVariable int id, @RequestBody Product product) {
-        repository.saveById(id, product);
+        product.setId(id);
+        repository.save(product);
         return new ResponseEntity("product " + product.getName() + " chanded", HttpStatus.OK);
     }
 

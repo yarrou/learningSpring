@@ -3,7 +3,7 @@ package org.change.springLesson.repositories;
 import org.change.springLesson.models.Product;
 import org.springframework.data.repository.CrudRepository;
 
-public interface ProductRepository extends CrudRepository<Product,Integer> {
+public interface ProductRepository extends CrudRepository<Product, Integer> {
     Product findById(int id);
 
     @Override
@@ -15,5 +15,5 @@ public interface ProductRepository extends CrudRepository<Product,Integer> {
     @Override
     void deleteById(Integer integer);
 
-    void saveById(Integer id,Product product);
+
 }

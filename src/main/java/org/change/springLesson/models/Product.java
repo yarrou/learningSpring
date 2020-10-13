@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PRODUCTS")
+@Table(name = "products")
 public class Product {
     private int id;
     private String name;
@@ -28,7 +28,6 @@ public class Product {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -38,7 +37,6 @@ public class Product {
     public int getPrice() {
         return price;
     }
-
     public void setPrice(int price) {
         this.price = price;
     }
@@ -60,8 +58,5 @@ public class Product {
         this.note = note;
     }
 
-
-
-    Product() {
-    }
+    Product() {}
 }
