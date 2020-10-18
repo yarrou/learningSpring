@@ -2,7 +2,7 @@ package org.change.springLesson.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.change.springLesson.models.Purchase;
+import org.change.springLesson.model.Purchase;
 import org.change.springLesson.repositories.PurchaseRepositoryCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/shop")
@@ -43,12 +42,6 @@ public class SimpleControllerPurchase {
     public ResponseEntity addPurchase(@RequestBody Purchase purchase) {
         repository.save(purchase);
         return new ResponseEntity("purchase: " + purchase.getId() + " added", HttpStatus.OK);
-    }
-
-    @GetMapping("/purchases/more/{val}")
-    public ResponseEntity getBigPurchases(@PathVariable int val) throws JsonProcessingException {
-        List<Purchase> list = repository.getPurchasesMoreThanPrice(val);
-        return new ResponseEntity((new ObjectMapper()).writeValueAsString(list),HttpStatus.OK);
     }
 
 

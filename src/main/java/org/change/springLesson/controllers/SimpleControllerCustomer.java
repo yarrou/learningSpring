@@ -2,7 +2,7 @@ package org.change.springLesson.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.change.springLesson.models.Customer;
+import org.change.springLesson.model.Customer;
 import org.change.springLesson.repositories.CustomerRepositoryCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

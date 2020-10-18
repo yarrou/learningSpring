@@ -1,12 +1,11 @@
 package org.change.springLesson.repositories;
 
-import org.change.springLesson.models.Purchase;
+import org.change.springLesson.model.Purchase;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public interface PurchaseRepositoryCrud extends CrudRepository<Purchase, Integer>,PurchaseRepository<Purchase> {
+public interface PurchaseRepositoryCrud extends CrudRepository<Purchase, Integer> {
 
     @Override
     void delete(Purchase entity);

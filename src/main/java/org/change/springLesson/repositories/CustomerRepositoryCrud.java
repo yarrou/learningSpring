@@ -1,6 +1,6 @@
 package org.change.springLesson.repositories;
 
-import org.change.springLesson.models.Customer;
+import org.change.springLesson.model.Customer;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

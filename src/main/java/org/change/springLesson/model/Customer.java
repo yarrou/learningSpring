@@ -1,4 +1,4 @@
-package org.change.springLesson.models;
+package org.change.springLesson.model;
 
 import javax.persistence.*;
 
