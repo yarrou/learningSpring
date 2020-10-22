@@ -55,5 +55,21 @@ public class Product {
         this.note = note;
     }
 
+    public Product(String name, int price, String note) {
+        this.name = name;
+        this.price = price;
+        this.note = note;
+    }
+
     Product() {}
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", note='" + note + '\'' +
+                '}';
+    }
 }
