@@ -1,7 +1,4 @@
-package org.change.springLesson.models;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+package org.change.springLesson.model;
 
 import javax.persistence.*;
 

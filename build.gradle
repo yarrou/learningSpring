@@ -19,6 +19,7 @@ dependencies {
 	implementation 'com.h2database:h2'
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
 	implementation 'org.postgresql:postgresql'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

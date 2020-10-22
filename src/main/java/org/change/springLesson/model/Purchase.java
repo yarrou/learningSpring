@@ -1,4 +1,4 @@
-package org.change.springLesson.models;
+package org.change.springLesson.model;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -8,9 +8,24 @@ import java.sql.Date;
 @Table(name = "purchases")
 public class Purchase {
     private int id;
-    private int customerId;
-    private int productId;
+    private int customer_Id;
+    private int product_Id;
     private Date date;
+
+    Purchase(){}
+
+    public Purchase(int id, int customer_Id, int product_Id, Date date) {
+        this.id = id;
+        this.customer_Id = customer_Id;
+        this.product_Id = product_Id;
+        this.date = date;
+    }
+
+    public Purchase(int id, int customer_Id, int product_Id) {
+        this.id = id;
+        this.customer_Id = customer_Id;
+        this.product_Id = product_Id;
+    }
 
     @Id
     @Column(name = "ID")
@@ -24,23 +39,23 @@ public class Purchase {
     }
 
     @Basic
-    @Column(name = "CUSTOMERID")
+    @Column(name = "CUSTOMER_ID")
     public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+        this.customer_Id = customerId;
     }
 
     public int getCustomerId() {
-        return customerId;
+        return customer_Id;
     }
 
     @Basic
-    @Column(name = "PRODUCTID")
+    @Column(name = "PRODUCT_ID")
     public void setProductId(int productId) {
-        this.productId = productId;
+        this.product_Id = productId;
     }
 
     public int getProductId() {
-        return productId;
+        return product_Id;
     }
 
     @Basic

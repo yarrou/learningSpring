@@ -1,9 +1,11 @@
 package org.change.springLesson.repositories;
 
-import org.change.springLesson.models.Customer;
+import org.change.springLesson.model.Customer;
 import org.springframework.data.repository.CrudRepository;
 
-public interface CustomerRepository extends CrudRepository<Customer, Integer> {
+import java.util.List;
+
+public interface CustomerRepositoryCrud extends CrudRepository<Customer, Integer> {
     Customer findById(int id);
 
     @Override
@@ -13,4 +15,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
     Customer save(Customer entity);
 
     void deleteById(Integer id);
+
+    List<Customer> findAllByName(String s);
 }
