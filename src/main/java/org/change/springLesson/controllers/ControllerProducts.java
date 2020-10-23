@@ -47,7 +47,7 @@ public class ControllerProducts {
             Product newProduct = new Product(name, price, note);
             repositoryCrud.save(newProduct);
 
-            return "redirect:/products-list";
+            return "products-list";
         }
 
 
