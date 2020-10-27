@@ -5,20 +5,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "products")
 public class Product {
-    private int id;
+    private Integer id;
     private String name;
     private int price;
     private String note;
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
     }
+    public void setId(Integer id){this.id= id;}
 
     @Basic
     @Column(name =  "NAME")
@@ -48,7 +49,7 @@ public class Product {
     }
 
 
-    public Product(int id,String name, int price,String note) {
+    public Product(Integer id,String name, int price,String note) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -56,12 +57,13 @@ public class Product {
     }
 
     public Product(String name, int price, String note) {
+        this.id = null;
         this.name = name;
         this.price = price;
         this.note = note;
     }
 
-    Product() {}
+    public Product() {}
 
     @Override
     public String toString() {

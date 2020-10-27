@@ -3,6 +3,7 @@ package org.change.springLesson.repositories;
 import org.change.springLesson.model.Customer;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface CustomerRepositoryCrud extends CrudRepository<Customer, Integer> {
@@ -17,4 +18,5 @@ public interface CustomerRepositoryCrud extends CrudRepository<Customer, Integer
     void deleteById(Integer id);
 
     List<Customer> findAllByName(String s);
+    ArrayList<Customer> findAll();
 }

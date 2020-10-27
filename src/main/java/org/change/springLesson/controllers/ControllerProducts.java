@@ -9,17 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-
 import java.util.ArrayList;
 
 @Controller
 //@RequestMapping("/shop")
 public class ControllerProducts {
-    private String errorMessage = "something wrong";
     @Autowired
     private ProductRepositoryCrud repositoryCrud;
+
     ArrayList<Product> list;
 
     @GetMapping("/products-list")
@@ -38,21 +35,21 @@ public class ControllerProducts {
     }
 
     @PostMapping("/addProduct")
-    public String savePerson(Model model, @ModelAttribute("productForm") ProductForm productForm) {
+    public String saveProduct(Model model, @ModelAttribute("productForm") ProductForm productForm) {
 
         String name = productForm.getName();
         int price = productForm.getPrice();
         String note = productForm.getNote();
-        if (name != null && name.length() > 0 && price >= 0) {
-            Product newProduct = new Product(name, price, note);
+        try{
+            Product newProduct = new Product(null, name, price, note);
             repositoryCrud.save(newProduct);
-
-            return "products-list";
+            return "redirect:/products-list";
         }
-
-
-        model.addAttribute("errorMessage", errorMessage);
-        return "addProduct";
+        catch (Exception e){
+            model.addAttribute("message", e.getMessage());
+            e.printStackTrace();
+            return "infoPage";
+        }
     }
 
 }

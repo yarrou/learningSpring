@@ -1,6 +1,7 @@
 package org.change.springLesson.form;
 
 public class ProductForm {
+    private Integer id;
     private String name;
     private int price;
     private String note;
