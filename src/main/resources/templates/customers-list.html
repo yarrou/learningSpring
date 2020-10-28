@@ -17,6 +17,7 @@
             <th>Email</th>
             <th>City</th>
             <th>Age</th>
+            <th>Info</th>
         </tr>
         <tr th:each ="customer : ${customersList}">
             <td th:utext="${customer.id}">...</td>
@@ -24,8 +25,11 @@
             <td th:utext="${customer.email}">...</td>
             <td th:utext="${customer.city}">...</td>
             <td th:utext="${customer.age}">...</td>
-
+            <td><form th:action="@{/customerPurchases/{id}(id = ${customer.id})}" metod="GET">
+                <input type="submit" value="inf">
+            </form></td>
         </tr>
+
     </table>
 </div>
 </body>

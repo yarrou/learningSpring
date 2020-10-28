@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Product List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Purchases the Customer</h1>
+<a href="shop">Home</a>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Product id</th>
+            <th>Date</th>
+        </tr>
+        <tr th:each ="purchase : ${purchasesList}">
+            <td th:utext="${purchase.id}">...</td>
+            <td th:utext="${purchase.productId}">...</td>
+            <td th:utext="${purchase.date}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

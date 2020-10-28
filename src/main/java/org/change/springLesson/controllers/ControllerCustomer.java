@@ -2,12 +2,15 @@ package org.change.springLesson.controllers;
 
 import org.change.springLesson.form.CustomerForm;
 import org.change.springLesson.model.Customer;
+import org.change.springLesson.model.Purchase;
 import org.change.springLesson.repositories.CustomerRepositoryCrud;
+import org.change.springLesson.repositories.PurchaseRepositoryCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
@@ -18,8 +21,11 @@ public class ControllerCustomer {
     //@RequestMapping("/shop")
     @Autowired
     private CustomerRepositoryCrud repositoryCrud;
+    @Autowired
+    private PurchaseRepositoryCrud purchaseRepositoryCrud;
 
     ArrayList<Customer> list;
+    ArrayList<Purchase> listPurchase;
 
     @GetMapping("/customers-list")
     public String customerListPage(Model model) {
@@ -53,5 +59,12 @@ public class ControllerCustomer {
             return "infoPage";
         }
     }
+    @GetMapping("/customerPurchases/{id}")
+    public String customerPurchases(Model model,@PathVariable int id){
+        listPurchase = purchaseRepositoryCrud.findAllByCustomerId(id);
+        model.addAttribute("purchasesList",listPurchase);
+        return "customer_purchases";
+    }
+
 
 }
