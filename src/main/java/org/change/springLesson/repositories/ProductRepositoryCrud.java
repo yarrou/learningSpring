@@ -12,9 +12,6 @@ public interface ProductRepositoryCrud extends CrudRepository<Product, Integer> 
     void delete(Product entity);
 
     @Override
-    Product save(Product product);
-
-    @Override
     void deleteById(Integer integer);
 
     void deleteAllByName(String name);
@@ -23,4 +20,5 @@ public interface ProductRepositoryCrud extends CrudRepository<Product, Integer> 
 
     ArrayList<Product> findAllByPriceLessThan(int price);
     ArrayList<Product> findAll();
+
 }
